@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Yeni Musteri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center;color:orange">Yeni Müşteri Ekle</h1>
+<br />
+<br />
+@if (ViewBag.kayit != null)
+{
+    <div class="alert alert-success">@ViewBag.kayit</div>
+    <br />
+}
+@using (Html.BeginForm("MusteriEkle", "Panel", FormMethod.Post))
+{
+    <label>Müşteri Bilgisi</label>
+    <input class="form-control" name="MusteriAd" placeholder="Müşteri Giriniz" />
+    <br />
+    <label>Müşteri Email</label>
+    <input class="form-control" name="MusteriEmail" placeholder="Email Giriniz" required />
+    <br />
+    <label>Müşteri Telefon</label>
+    <input class="form-control" name="MusteriTelefon" placeholder="Telefon Giriniz" required />
+    <br />
+    <label>Müşteri Parola</label>
+    <input class="form-control" name="MusteriParola" placeholder="Parola Giriniz" required />
+    <br />
+    <input type="submit" value="Müşteriyi Kaydet" class="btn btn-secondary" required />
+}
+

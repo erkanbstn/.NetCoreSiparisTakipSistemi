@@ -1,0 +1,58 @@
+﻿@using SiparisTakipSistemiCore.Models.Entities
+@model List<Musteri>
+@{
+    ViewData["Title"] = "Musteri Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center;color:orange">Müşteri Listesi</h1>
+<br />
+<br />
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Müşteri
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Telefon
+        </th>
+        <th>
+            Sil
+        </th>
+        <th>
+            Düzenle
+        </th>
+    </tr>
+    @foreach (var i in Model)
+    {
+<tr>
+    <td>
+        @i.MusteriID
+    </td>
+    <td>
+        @i.MusteriAd
+    </td>
+    <td>
+        @i.MusteriEmail
+    </td>
+    <td>
+        @i.MusteriTelefon
+    </td>
+    <td>
+        <a href="~/Panel/MusteriSil/@i.MusteriID" class="btn btn-danger">Sil</a>
+    </td>
+    <td>
+        <a href="~/Panel/MusteriGuncelle/@i.MusteriID" class="btn btn-warning">Düzenle</a>
+    </td>
+</tr>
+    }
+</table>
+<a href="~/Panel/MusteriEkle" class="btn btn-info">Yeni Müşteri Ekle</a>
+

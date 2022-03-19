@@ -1,0 +1,37 @@
+﻿@model SiparisTakipSistemiCore.Models.Entities.Siparis
+@{
+    ViewData["Title"] = "YeniSiparis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center;color:orange">Yeni Sipariş Ekle</h1>
+<br />
+<br />
+@if (ViewBag.skayit != null)
+{
+    <div class="alert alert-success">@ViewBag.skayit</div>
+    <br />
+}
+@using (Html.BeginForm("YeniSiparis", "Panel", FormMethod.Post))
+{
+    <label>Müşteri Bilgisi</label>
+    @Html.DropDownListFor(b => b.MusteriID, (List<SelectListItem>)ViewBag.musteri,"Müşteri Seçiniz", new { @class = "form-control", required = "required" })
+    <br />
+    <label>Müşteri Telefon</label>
+    <input class="form-control" name="Telefon" placeholder="Telefon Giriniz" required />
+    <br />
+    <label>Müşteri EPosta</label>
+    <input class="form-control" name="EPosta" placeholder="EPosta Giriniz" required />
+    <br />
+    <label>Ürün Adı</label>
+    <input class="form-control" name="Urun" placeholder="Ürün Giriniz" required />
+    <br />
+    <label>Adres</label>
+    <input class="form-control" name="Adres" placeholder="Adres Giriniz" required />
+    <br />
+    <label>Adet</label>
+    <input class="form-control" name="Adet" placeholder="Adet Giriniz" required />
+    <br />
+    <input type="submit" value="Sipariş Kaydet" class="btn btn-secondary" required />
+}
+

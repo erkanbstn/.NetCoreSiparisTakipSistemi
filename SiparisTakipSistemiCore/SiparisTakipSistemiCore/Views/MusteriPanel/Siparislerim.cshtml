@@ -1,0 +1,73 @@
+﻿@using SiparisTakipSistemiCore.Models.Entities
+
+@{
+    ViewData["Title"] = "Siparislerim";
+    Layout = "~/Views/Shared/Panel.cshtml";
+}
+<h1 style="text-align:center;color:orange">Siparişlerim Listesi</h1>
+<br />
+<br />
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            Telefon
+        </th>
+        <th>
+            Ürün
+        </th>
+        <th>
+            Adres
+        </th>
+        <th>
+            Adet
+        </th>
+        <th>
+            Tarih
+        </th>
+        <th>
+            Onayla
+        </th>
+        <th>
+            Reddet
+        </th>
+
+
+    </tr>
+    @foreach (var i in Model)
+    {
+<tr>
+    <td>
+        @i.Telefon
+    </td>
+    <td>
+        @i.Urun
+    </td>
+    <td>
+        @i.Adres
+    </td>
+    <td>
+        @i.Adet
+    </td>
+    <td>
+        @Convert.ToDateTime(i.Tarih).ToString("dd/MMMM/yyyy")
+    </td>
+    @if (i.Durum == "Sipariş Beklemede")
+    {
+        <td class="alert alert-success">Sipariş </td>
+        <td class="alert alert-success">Beklemede</td>
+    }
+    else if (i.Durum == "Sipariş Onaylandı")
+    {
+        <td class="alert alert-success">Sipariş </td>
+        <td class="alert alert-success">Onaylandı</td>
+    }
+    else if (i.Durum == "Sipariş Reddedildi")
+    {
+        <td class="alert alert-danger">Sipariş </td>
+        <td class="alert alert-danger">Reddedildi</td>
+    }
+</tr>
+    }
+</table>
+

@@ -1,0 +1,91 @@
+﻿@using SiparisTakipSistemiCore.Models.Entities
+@model List<Siparis>
+@{
+    ViewData["Title"] = "Sipariş Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="text-align:center;color:orange">Sipariş Listesi</h1>
+<br />
+<br />
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            Müşteri
+        </th>
+        <th>
+            EPosta
+        </th>
+        <th>
+            Telefon
+        </th>
+        <th>
+            Ürün
+        </th>
+        <th>
+            Adres
+        </th>
+        <th>
+            Adet
+        </th>
+        <th>
+            Tarih
+        </th>
+        <th>
+            Onayla
+        </th>
+        <th>
+            Reddet
+        </th>
+
+
+    </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>
+                @i.Musteri.MusteriAd
+            </td>
+            <td>
+                @i.EPosta
+            </td>
+            <td>
+                @i.Telefon
+            </td>
+            <td>
+                @i.Urun
+            </td>
+            <td>
+                @i.Adres
+            </td>
+            <td>
+                @i.Adet
+            </td>
+            <td>
+                @Convert.ToDateTime(i.Tarih).ToString("dd/MMMM/yyyy")
+            </td>
+            @if (i.Durum == "Sipariş Beklemede")
+            {
+                <td>
+                    <a href="~/Panel/SiparisOnayla/@i.SiparisID" class="btn btn-info">Onayla</a>
+                </td>
+                <td>
+                    <a href="~/Panel/SiparisReddet/@i.SiparisID" class="btn btn-danger">Reddet</a>
+                </td>
+            }
+            else if (i.Durum == "Sipariş Onaylandı")
+            {
+                <td class="alert alert-success">Sipariş </td>
+                <td class="alert alert-success">Onaylandı</td>
+            }
+            else if (i.Durum == "Sipariş Reddedildi")
+            {
+            <td class="alert alert-danger">Sipariş </td>
+            <td class="alert alert-danger">Reddedildi</td>
+            }
+        </tr>
+    }
+</table>
+<a href="~/Panel/YeniSiparis" class="btn btn-warning">Yeni Sipariş Ekle</a>
+
